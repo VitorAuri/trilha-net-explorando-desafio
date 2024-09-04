@@ -6,20 +6,32 @@ Console.OutputEncoding = Encoding.UTF8;
 // Cria os modelos de hóspedes e cadastra na lista de hóspedes
 List<Pessoa> hospedes = new List<Pessoa>();
 
-Pessoa p1 = new Pessoa(nome: "Hóspede 1");
-Pessoa p2 = new Pessoa(nome: "Hóspede 2");
+Pessoa serafim = new Pessoa(nome: "serafim");
+Pessoa alex = new Pessoa(nome: "Alex");
+Pessoa ghuat = new Pessoa(nome:"Ghuat");
 
-hospedes.Add(p1);
-hospedes.Add(p2);
+
+
+hospedes.Add(serafim);
+hospedes.Add(alex);
+hospedes.Add(ghuat);
 
 // Cria a suíte
-Suite suite = new Suite(tipoSuite: "Premium", capacidade: 2, valorDiaria: 30);
+Suite suiteUm = new Suite(tipoSuite: "Premium", capacidade: 3, valorDiaria: 30);
+Suite suiteDois = new Suite(tipoSuite: "Premium", capacidade: 2, valorDiaria: 30);
 
 // Cria uma nova reserva, passando a suíte e os hóspedes
-Reserva reserva = new Reserva(diasReservados: 5);
-reserva.CadastrarSuite(suite);
-reserva.CadastrarHospedes(hospedes);
+Reserva reservaUm = new Reserva(diasReservados: 5);
+Reserva reservaDois = new Reserva(diasReservados: 14);
+reservaUm.CadastrarSuite(suiteUm);
+
+reservaUm.CadastrarHospedes(hospedes);
 
 // Exibe a quantidade de hóspedes e o valor da diária
-Console.WriteLine($"Hóspedes: {reserva.ObterQuantidadeHospedes()}");
-Console.WriteLine($"Valor diária: {reserva.CalcularValorDiaria()}");
+Console.WriteLine($"Hóspedes: {reservaUm.ObterQuantidadeHospedes()}");
+Console.WriteLine($"Valor diária: {reservaUm.CalcularValorDiaria()}");
+
+//Exception ocorre por causa de capacidade excedida
+reservaDois.CadastrarSuite(suiteDois);
+reservaDois.CadastrarHospedes(hospedes);
+
